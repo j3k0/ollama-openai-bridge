@@ -5,6 +5,14 @@ const { randomUUID } = require('crypto');
 const app = express();
 const port = parseInt(process.env.PORT || '3301');
 
+const owned_by = {
+  'mistral': 'Mistral AI',
+  'mixtral': 'Mistral AI',
+  'llama2': 'Meta Platforms',
+  'codellama': 'Meta Platforms',
+  'phi': 'Microsoft',
+};
+
 // Configure Bunyan logger
 const logger = bunyan.createLogger({ name: 'ollama-openai-bridge' });
 
@@ -32,7 +40,7 @@ app.get('/v1/models', async (req, res) => {
         id: model.name,
         object: "model",
         created: +new Date(model.modified_at),
-        owned_by: model.name.split(':')[0],
+        owned_by: owned_by[model.name.split(':')[0]] || 'Unknown',
       }))
     });
   } catch (error) {

@@ -4,7 +4,8 @@
 
 ## Description
 
-The motivation was to use gitlens for VSCode integration with OpenAI, but using my locally installed LLM run by ollama.
+The motivation was to use services that consume the OpenAI API, but with my locally installed LLM run by
+Ollama. It's been tested successfully with GitLens's "Explain with AI". 
 
 ## Usage
 
@@ -35,12 +36,12 @@ curl -s http://localhost:3301/v1/chat/completions -H "Content-Type: application/
 
 In VSCode's `settings.json`. Gitlens might ask for an API key, anything should work.
 
-```json
+```js
 {
-  ...
+  //...
   "gitlens.ai.experimental.provider": "openai",
   "gitlens.ai.experimental.openai.url": "http://127.0.0.1:3301/v1/chat/completions",
-  "gitlens.ai.experimental.openai.model": "mistral:latest",
+  "gitlens.ai.experimental.openai.model": "mistral:latest", // or your favorite
 }
 ```
 
